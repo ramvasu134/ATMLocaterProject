@@ -1,10 +1,11 @@
 # ATMLocaterProject
 Atm locator project
 
-download the project in to STS - springtool suite
+Download the project in to STS - springtool suite
 
 Right click on the project and select Run as SpringBootApplication
-selct Existing Maven project when loading in STS
+
+select Existing Maven project when loading in STS
 
 Open Postman
  create a new Request with GET http method shown in the postman_full response.jpg
