@@ -1,37 +1,35 @@
 package com.atm.locater.atmlocater.resttemplate;
 
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import com.atm.locater.atmlocater.dao.AtmMainObjectDao;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+@Component
 public class AtmLocaterRestTemplate {
-	
+
 	@Autowired
 	private RestTemplate restTemplate;
-	
-	public ResponseEntity<AtmMainObjectDao> getAtmLocationsFromRestTemplate(){
-ResponseEntity<AtmMainObjectDao> responseEntity = null;
 
-AtmMainObjectDao atmMainObjectDao = restTemplate.getForObject("https://www.ing.nl/api/locator/atms/", AtmMainObjectDao.class);
-System.out.println(" +++++++++ "+atmMainObjectDao);
-//responseEntity = (ResponseEntity<AtmMainObjectDao>)restTemplate.exchange("https://www.ing.nl/api/locator/atms/", HttpMethod.GET, responseEntity, null, null)	;	
+	public List<AtmMainObjectDao> getAtmLocationsFromRestTemplate() throws Exception{
 
-		return responseEntity;
+		String response = restTemplate.getForObject("https://www.ing.nl/api/locator/atms/", String.class);
+        String toBeParsed = response.substring(6, response.length());
+        ObjectMapper objectMapper = new ObjectMapper();
+        AtmMainObjectDao[] mainObjectDaos = objectMapper.readValue(toBeParsed, AtmMainObjectDao[].class);
+        return Arrays.asList(mainObjectDaos);
 	}
-	
+
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
-	 
-	    return builder
-	            .setConnectTimeout(Duration.ofMillis(3000))
-	            .setReadTimeout(Duration.ofMillis(3000))
-	            .build();
+		return builder.setConnectTimeout(Duration.ofMillis(3000)).setReadTimeout(Duration.ofMillis(3000)).build();
 	}
 }

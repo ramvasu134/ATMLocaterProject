@@ -1,7 +1,8 @@
 package com.atm.locater.atmlocater.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,11 +17,7 @@ public class ATMLocatorRestController {
 	private AtmLocaterService atmLocatorService; 
 	
 	@GetMapping(path = "/atm", name = "", produces = "application/json")
-	public ResponseEntity<AtmMainObjectDao> getAtms() {
-		ResponseEntity<AtmMainObjectDao> responseEntity = null;
-		System.out.println(")))))))))))");
-		
-		
+	public List<AtmMainObjectDao> getAtms() throws Exception{
 		return atmLocatorService.getAtmLocations();
     }
 

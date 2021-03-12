@@ -1,6 +1,8 @@
 package com.atm.locater.atmlocater.controller.service;
 
-import org.springframework.http.ResponseEntity;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.atm.locater.atmlocater.dao.AtmMainObjectDao;
@@ -13,14 +15,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class AtmLocaterService {
-	
+
+	@Autowired
 	private AtmLocaterRestTemplate atmLocaterRestTemp;
-	
-	public ResponseEntity<AtmMainObjectDao> getAtmLocations(){
-		ResponseEntity<AtmMainObjectDao> responseEntity = null;
-		
+
+	public List<AtmMainObjectDao> getAtmLocations() throws Exception {
 		return atmLocaterRestTemp.getAtmLocationsFromRestTemplate();
-		
 	}
 
 }
