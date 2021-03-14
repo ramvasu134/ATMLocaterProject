@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.atm.locater.atmlocater.controller.service.AtmLocaterService;
@@ -17,8 +18,8 @@ public class ATMLocatorRestController {
 	private AtmLocaterService atmLocatorService; 
 	
 	@GetMapping(path = "/atm", name = "", produces = "application/json")
-	public List<AtmMainObjectDao> getAtms() throws Exception{
-		return atmLocatorService.getAtmLocations();
+	public List<AtmMainObjectDao> getAtms(@RequestParam(required = false) String city) throws Exception{
+		return atmLocatorService.getAtmLocations(city);
     }
 
 }
