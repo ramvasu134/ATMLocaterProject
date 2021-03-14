@@ -11,7 +11,11 @@ Open Postman
  create a new Request with GET http method shown in the postman_full response.jpg
   screenshot
   trigger : GET method
+  without filter
   http://localhost:8080/atmlocator/atm
+ 
+ with filter
+  http://localhost:8080/atmlocator/atm?city=Rijswijk (NB)
   
   you can see the response with all the fields
   
