@@ -19,5 +19,12 @@ public class Address {
 	private String postalcode;
 	@JsonProperty("city")
 	private String city;
+	
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
 
 }
