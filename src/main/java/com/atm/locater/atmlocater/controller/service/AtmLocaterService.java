@@ -19,8 +19,8 @@ public class AtmLocaterService {
 	@Autowired
 	private AtmLocaterRestTemplate atmLocaterRestTemp;
 
-	public List<AtmMainObjectDao> getAtmLocations() throws Exception {
-		return atmLocaterRestTemp.getAtmLocationsFromRestTemplate();
+	public List<AtmMainObjectDao> getAtmLocations(String city) throws Exception {
+		return atmLocaterRestTemp.getAtmLocationsFromRestTemplate(city);
 	}
 
 }
